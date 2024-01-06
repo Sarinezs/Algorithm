@@ -2,6 +2,7 @@
 using namespace std;
 
 int main(){
+    cout<<"asldkghsadlg";
     int n;
     cin>>n;
     if(n > 1 && n < 1000000){
