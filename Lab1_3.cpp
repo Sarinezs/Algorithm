@@ -5,7 +5,7 @@ int main(){
     int n;
     cin>>n;
     if(n > 1 && n < 1000000){
-        int a[n],b[n],time,count = 0;
+        int a[n],b[n],timein = 0,timeout = 0,count = 0;
         int size_a = sizeof(a)/sizeof(a[0]);
         int size_b = sizeof(b)/sizeof(b[0]);
         for(int i = 0; i<n; i++){
@@ -16,19 +16,40 @@ int main(){
             cin>>b[i];
         }        
 
+        timein = a[0];
+        timeout = b[0];
+
         for(int i = 0; i<size_a; i++){
-            int c = 1;
-            for(int j = 0; j<size_b; j++){
-                if(a[i] == b[j]){
-                    c++;
-                }
-            }
-            if(c > count){
-                time = a[i];
-                count = c;
+            if((timein <= a[i] && a[i] <= timeout) || (timeout >= b[i] && b[i] )){
+                    if(timein <= a[i] && a[i] <= timeout){
+                        timein = a[i];
+                    }
+                    if(timeout >= b[i] && b[i] > timein){
+                        timeout = b[i];
+                    }
+                    count++;
             }
         }
+        cout<<timein<<" "<<count<<endl;
+        // for(int i = 0; i<size_a; i++){
+        //     int c = 1;
+        //     timein = a[i];
+        //     timeout = b[i];
+        //     for(int j = i+1; j<size_b; j++){
+                // if(timein <= a[j] || timeout >= b[j]){
+                //     if(timein <= a[j]){
+                //         timein = a[j];
+                //     }
+                //     if(timeout >= b[j]){
+                //         timeout = b[j];
+                //     }
+                //     c++;
+                //     cout<<timein<<timeout<<count<<endl;
+        //         }
+        //     }
+        //     count = c;
+        // }
 
-        cout<<time<<" "<<count;
+
     }
 }

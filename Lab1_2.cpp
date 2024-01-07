@@ -2,7 +2,6 @@
 using namespace std;
 
 int main(){
-    cout<<"asldkghsadlg";
     int n;
     cin>>n;
     if(n > 1 && n < 1000000){
@@ -18,14 +17,14 @@ int main(){
                     F_count++;
                 }
             }
-            if(F_count > F_max){
+            if(F_count >= F_max){
                 F_max = F_count;
             }
-            if(F_count < F_min){
+            else{
                 F_min = F_count;
             }
         }
 
-        cout<<(F_max - F_min);
+        cout<<(F_max)<<( F_min);
     }
 }
