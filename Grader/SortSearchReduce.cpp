@@ -97,7 +97,7 @@ int main() {
             // cout<<number_reduce<<"--"<<endl;
         }
         else{
-            if(number_reduce > max_number_reduce){
+            if(number_reduce > max_number_reduce){ ///// เหลือแก้ตรงนี้
                 b[b_index] = split_array[i];
                 // cout<<b[b_index]<<"--";
                 max_number_reduce = number_reduce;
