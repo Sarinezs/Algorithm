@@ -5,7 +5,7 @@ int subset(int a[], int x[], int k, int n){
     if(k == n){
         int sum = 0;
         for(int i = 0; i<n-1; i++){
-            if(x[i] == x[i+1]){
+            if(x[i] == x[i+1]){ // ถ้าตำแหน่งติดกัน ให้ == 0
                 x[i+1] = 0;
             }
         }
@@ -17,7 +17,6 @@ int subset(int a[], int x[], int k, int n){
         }
         
         return sum;
-        
     }
     else{
         x[k] = 1;
@@ -40,6 +39,6 @@ int main(){
     }
 
    
-    cout<<subset(a, b, 0, 10);
+    cout<<subset(a, b, 0, n);
     
 }
