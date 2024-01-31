@@ -1,56 +1,32 @@
-#include <iostream>
+#include<iostream>
+#include<cmath>
 using namespace std;
 
-// Function to partition the array and return the index of the pivot element
-int partition(int arr[], int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
 
-    for (int j = low; j < high; ++j) {
-        if (arr[j] <= pivot) {
-            ++i;
-            // cout<<arr[i]<<" "<<arr[j]<<endl;
-            std::swap(arr[i], arr[j]);
-        }
+int power(int a, int n, int &count){
+
+    if(n == 0){
+        return 1;
     }
+    if(n % 2 == 0){
+        count++;
+        int temp = power(a, n/2, count);
+        return temp * temp;
+    }
+    else{
+        // count++;
+        int temp = power(a, (n-1)/2, count);
+        return a * temp * temp;
+    }
+    
+    
 
-    std::swap(arr[i + 1], arr[high]);
-    // for(int i = 0; i<high+1; i++){
-    //     cout<<arr[i]<<" ";
-    // }
-    // cout<<endl;
-    return i + 1;
 }
 
-// Function to perform quick select
-int quickSelect(int arr[], int low, int high, int k) {
-    if (low <= high) {
-        int pivotIndex = partition(arr, low, high);
-
-        if (pivotIndex == k - 1)
-            return arr[pivotIndex];
-
-        if (pivotIndex > k - 1)
-            return quickSelect(arr, low, pivotIndex - 1, k);
-
-        return quickSelect(arr, pivotIndex + 1, high, k);
-    }
-
-    // If the array is empty or k is out of bounds
-    return -1; // You can choose a different indicator for an out-of-bounds case
-}
-
-int main() {
-    int arr[] = {1,5,10,4,8,2,6};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int k = 6; 
-
-    int result = quickSelect(arr, 0, n - 1, k);
-
-    if (result != -1)
-        std::cout << "The " << k << "-th smallest element is: " << result << std::endl;
-    else
-        std::cout << "Invalid value of k." << std::endl;
-
-    return 0;
+int main(){
+    int a, n, count = 0;
+    cin>>a>>n;
+    
+    int ans = power(a, n, count);
+    cout<<ans<<" "<<static_cast<int>(ceil(log2(n)));
 }
