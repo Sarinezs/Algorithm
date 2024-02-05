@@ -3,7 +3,7 @@ using namespace std;
 
 void bubblesort(char a[], int start, int end){
     for(int i =  start; i<end; i++){
-        for(int j = start; j<end - i - 1; j++){
+        for(int j = start; j<end - 1; j++){
             if(a[j] > a[j+1]){
                 swap(a[j], a[j+1]);
             }
@@ -38,7 +38,10 @@ int main(){
     }
     a[n] = '\0';
     cout<<endl;
-    bubblesort(a, 0, n);
-    perm(a, n, 0);
-   
+    bubblesort(a, 1, n);
+    // perm(a, n, 0);
+    for(int i = 0; i<n; i++){
+        cout<<a[i]<<" ";
+    }
+ 
 }
