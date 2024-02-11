@@ -19,9 +19,9 @@ void perm(char a[], int n, int k){
         cout<<endl;
     }
     else{
+        bubblesort(a, k, n);
         for(int i = k; i<n; i++){
             swap(a[k], a[i]);
-            bubblesort(a, k+1, n);
             perm(a, n, k+1);
             swap(a[k], a[i]);
             
@@ -38,10 +38,10 @@ int main(){
     }
     a[n] = '\0';
     cout<<endl;
-    bubblesort(a, 1, n);
-    // perm(a, n, 0);
-    for(int i = 0; i<n; i++){
-        cout<<a[i]<<" ";
-    }
+    // bubblesort(a, 1, n);
+    perm(a, n, 0);
+    // for(int i = 0; i<n; i++){
+    //     cout<<a[i]<<" ";
+    // }
  
 }

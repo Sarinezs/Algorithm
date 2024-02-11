@@ -6,7 +6,7 @@ void subset(int a[], int k, int n){
         cout<<a[i]<<" ";
     }
     cout<<endl;
-    int j = (k==0)? 1: a[k-1]+1;
+    int j = (k==0)? 0: a[k-1]+1;
     for(int i = j; i<n+1; i++){
         a[k] = i;
         subset(a, k+1, n);
