@@ -11,7 +11,7 @@ void combination(int a[], int n, int k, int r, int b[], int b_size, int coupon, 
             }
             count++;
         }
-        if(cost <= coupon){
+        if(cost <= coupon){ //เหลือตรงนี้
             for(int i = 0; i<b_size; i++){
                 cout<<b[i]<<endl;
             }
