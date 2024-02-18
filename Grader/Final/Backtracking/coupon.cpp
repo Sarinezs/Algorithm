@@ -2,20 +2,24 @@
 using namespace std;
 
 void combination(int a[], int n, int k, int r, int b[], int b_size, int coupon, int &count){
+    int cost = 0;
+    for(int i = 0; i<b_size; i++){
+        cost += b[i];
+        if(cost > coupon){
+            // cout<<cost<<endl;
+            return;
+        }
+    }
+
     if(r == 0){
-        int cost = 0;
+        count++;
         for(int i = 0; i<b_size; i++){
-            cost += b[i];
-            if(cost > coupon){
-                return;
-            }
-            count++;
-        }
-        if(cost <= coupon){ //เหลือตรงนี้
-            for(int i = 0; i<b_size; i++){
-                cout<<b[i]<<endl;
+            cout<<b[i]<<" ";
+            if(i == b_size-1){
+                cout<<"sum = "<<cost<<endl;
             }
         }
+        
     }
     for(int i = k; i<n; i++){
         b[b_size] = a[i];
@@ -31,9 +35,10 @@ int main(){
         // a[i] = i+1;
         cin>>a[i];
     }
+    cout<<endl;
     combination(a, n, 0, 3, b, b_size, coupon, count);
-    for(int i = 0; i<3; i++){
-        cout<<b[i]<<" ";
-    }
-    // cout<<count;
+    // for(int i = 0; i<3; i++){
+    //     cout<<b[i]<<" ";
+    // }
+    cout<<count;
 }

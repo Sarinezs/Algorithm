@@ -3,8 +3,7 @@
 using namespace std;
 
 void n_queen(int a[], int n, int k, int &count){
-    if(k == n){
-        int flag = 0;
+    int flag = 0;
         for(int i = 1; i<k; i++){
             for(int j = 0; j<i; j++){
                 if(abs(j-i) == abs(a[j] - a[i]) || a[j] == a[i]){
@@ -12,6 +11,8 @@ void n_queen(int a[], int n, int k, int &count){
                 }
             }
         }
+    if(k == n){
+        
 
         if(flag == 0){
             count++;

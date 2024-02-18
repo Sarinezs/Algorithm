@@ -2,17 +2,18 @@
 using namespace std;
 
 int subset(int a[], int b[], int g[], int k, int n, int c, int &count){
+    int weightsum = 0;
+    for(int i = 0; i<k; i++){
+        weightsum += a[i]*g[i];
+       if(weightsum > c){
+            return 0;
+       }
+    }
+
     if(k == n){
-        int weightsum = 0;
         int valuesum = 0;
         for(int i = 0; i<n; i++){
-            weightsum += a[i]*g[i];
-            if(weightsum <= c){
-                valuesum += b[i]*g[i];
-            }
-            else{
-                return 0;
-            }
+            valuesum += b[i]*g[i];
         }
         count++;
         cout<<weightsum<<" "<<valuesum<<endl;
