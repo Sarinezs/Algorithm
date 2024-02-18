@@ -1,5 +1,6 @@
 #include<iostream>
 using namespace std;
+// 4 18 12 8 5 7 4 4 2 2
 
 int subset(int a[], int b[], int g[], int k, int n, int c, int &count){
     int weightsum = 0;
@@ -16,7 +17,7 @@ int subset(int a[], int b[], int g[], int k, int n, int c, int &count){
             valuesum += b[i]*g[i];
         }
         count++;
-        cout<<weightsum<<" "<<valuesum<<endl;
+        // cout<<weightsum<<" "<<valuesum<<endl;
         return valuesum;
     }
     else{
@@ -39,6 +40,6 @@ int main(){
         cin>>a[i]>>b[i];
     }
     cout<<endl;
-    subset(a, b, g, 0, n, c, count);
-    cout<<count;
+    cout<<subset(a, b, g, 0, n, c, count);
+    // cout<<endl<<count;
 }
