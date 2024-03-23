@@ -12,8 +12,6 @@ void n_queen(int a[], int n, int k, int &count){
             }
         }
     if(k == n){
-        
-
         if(flag == 0){
             count++;
             for(int i = 0; i<k; i++){
@@ -31,8 +29,9 @@ void n_queen(int a[], int n, int k, int &count){
 }
 
 int main(){
-    int n = 4, count = 0;
+    int n, count = 0;
+    cin>>n;
     int a[n];
     n_queen(a, n, 0, count);
-    cout<<count;
+    // cout<<count;
 }

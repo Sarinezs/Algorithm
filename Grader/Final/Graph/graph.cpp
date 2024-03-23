@@ -1,21 +1,22 @@
 #include<iostream>
 using namespace std;
-int n, p, q, s, d,a[100][100], visited[100];
+int n, p, q, s, d,a[100][100], visited[100], shotest_path = 100000;
 // cin>>n;
 
-void dfs(int n, int i){
+void dfs(int n, int i, int length){
     int j, s;
 
-    cout<<i;
+    // cout<<i;
     if(i == d){
-        cout<<endl;
+        // cout<<endl;
+        shotest_path = min(shotest_path , length);
         return;
     }
 
     visited[i] = 1;
     for(j = i; j<n; j++){
         if(!visited[j] && a[i][j] == 1){
-            dfs(n, j);
+            dfs(n, j, length+1);
         }
     }
     // for(j = i; j>=0; j--){
@@ -27,7 +28,7 @@ void dfs(int n, int i){
 }
 
 int main(){
-    
+    int length = 0;
     cin>>n;
     
 
@@ -49,7 +50,8 @@ int main(){
     }
 
     cin>>s>>d;
-    dfs(n, s);
+    dfs(n, s, length);
+    cout<<shotest_path;
 
 
     // for(int i = 0; i<n; i++){
