@@ -1,27 +1,14 @@
 #include<iostream>
 using namespace std;
 
-void lexiperm(char x[], int n, int k){
-    if(k == n){
+void lexiperm(int a[], int k, int n){
+    if(k == n-1){
         for(int i = 0; i<n; i++){
-            cout<<x[i]<<" ";
+            cout<<a[i]<<" ";
         }
         cout<<endl;
     }
-    else{
-        for(int i = k; i<n; i++){
-            // x[k+1] = i;
-            swap(x[k], x[i]);
-            int j = 1;
-            while(j <= k && x[j] != x[k+1]){
-                ++j;
-            }
-            if(j > k){
-                lexiperm(x, n, k+1);
-                swap(x[k], x[i]);
-            }
-        }
-    }
+    for(int i = )
 }
 
 int main(){

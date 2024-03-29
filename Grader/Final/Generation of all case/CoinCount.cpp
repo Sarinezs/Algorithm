@@ -2,19 +2,23 @@
 using namespace std;
 
 int subset(int a[], int x[], int k, int n){
-    if(k == n){
-        int sum = 0;
-        for(int i = 0; i<n-1; i++){
-            if(x[i] == x[i+1]){ // ถ้าตำแหน่งติดกัน ให้ == 0
-                x[i+1] = 0;
+    for(int i = 0; i<n-1; i++){
+            if(x[i] == 1 && x[i+1] == 1){ // ถ้าตำแหน่งติดกัน ให้ == 0
+                // x[i+1] = 0;
+                return 0;
             }
         }
+    if(k == n){
+        int sum = 0;
+        
 
         for(int i = 0; i<n; i++){
+            cout<<x[i]<<" ";
             if(x[i] == 1){
                 sum += a[i];
             }
         }
+        cout<<endl;
         
         return sum;
     }

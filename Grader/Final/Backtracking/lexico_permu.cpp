@@ -23,7 +23,7 @@ void permutation(string str, int i, int n)
 
 int main()
 {
-    string str = "1234";
+    string str = "abc";
     sort(str.begin(), str.end());
 
     permutation(str, 0, str.length());
