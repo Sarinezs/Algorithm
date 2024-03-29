@@ -1,45 +1,34 @@
 #include<iostream>
 using namespace std;
-// 4 18 12 8 5 7 4 4 2 2
-
-int subset(int a[], int b[], int g[], int k, int n, int c, int &count){
-    int weightsum = 0;
-    for(int i = 0; i<k; i++){
-        weightsum += a[i]*g[i];
-       if(weightsum > c){
-            return 0;
-       }
+int count = 0;
+int subset(int a[],int w[], int g[], int k, int n, int c){
+    if(c < 0){
+        return 0;
     }
-
     if(k == n){
-        int valuesum = 0;
-        for(int i = 0; i<n; i++){
-            valuesum += b[i]*g[i];
-        }
+        int sum = 0;
         count++;
-        // cout<<weightsum<<" "<<valuesum<<endl;
-        return valuesum;
+        for(int i = 0; i<n; i++){
+            sum += a[i]*g[i];
+        }
+        // cout<<sum;
+        // cout<<endl;
+        return sum;
     }
     else{
         g[k] = 1;
-        int sum1 = subset(a, b, g, k+1, n, c, count);
+        int sum1 = subset(a, w, g, k+1, n, c-w[k]*g[k]);
         g[k] = 0;
-        int sum2 = subset(a, b, g, k+1, n, c, count);
-        int max= (sum1 > sum2) ? sum1 : sum2;
+        int sum2 = subset(a, w, g, k+1, n, c-w[k]*g[k]);
 
-        return max;
-
+        return max(sum1, sum2);
     }
 }
 
 int main(){
-    int n, c, count = 0;
-    cin>>n>>c;
-    int a[n], b[n], g[n];
-    for(int i = 0; i<n; i++){
-        cin>>a[i]>>b[i];
-    }
-    cout<<endl;
-    cout<<subset(a, b, g, 0, n, c, count);
-    // cout<<endl<<count;
+    int a[] = {12,5,4,2};
+    int w[] = {8,7,4,2};
+    int g[4];
+    cout<<subset(a, w, g, 0, 4, 18);
+    // cout<<count;
 }
