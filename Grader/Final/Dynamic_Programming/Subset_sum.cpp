@@ -1,83 +1,28 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
-bool memo[1000] = {false};
+int memo[1000][1000] = {0};
 
-void bottomup(int nums[], int n, int targetSum)
-{
-    bool dp[1000][1000] = {false};
-    int subset[1000];
 
-    for (int i = 0; i <= n; i++)
-    {
-        dp[i][0] = true;
+int topdown(int a[], int n, int k){
+    if(k == 0){
+        return 1;
+    }
+    if(k < 0 || n == 0){
+        return 0;
+    }
+    if(memo[n][k] != 0){
+        return memo[n][k];
+    }
+    else{
+        memo[n][k] = topdown(a,n-1, k-a[n-1]) + topdown(a,n-1, k);
+        return memo[n][k];
     }
 
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= targetSum; j++)
-        {
-            if (nums[i - 1] > j)
-            {
-                dp[i][j] = dp[i - 1][j];
-            }
-            else
-            {
-                dp[i][j] = dp[i - 1][j - nums[i - 1]] || dp[i - 1][j];
-            }
-        }
-    }
-
-    // for(int i = 0; i<=n; i++){
-    //     for(int j = 0; j<=targetSum; j++){
-    //         cout<<dp[i][j]<<" ";
-    //     }
-    //     cout<<endl;
-    // }
-    int n_subset = 0;
-    if (dp[n][targetSum])
-    {
-        while (n > 0 && targetSum > 0)
-        {
-            if (dp[n][targetSum] && !dp[n - 1][targetSum])
-            {
-                subset[n_subset] = nums[n - 1];
-                targetSum -= nums[n - 1];
-                n_subset++;
-            }
-            n--;
-        }
-        // return true;
-    }
-    cout<<n_subset;
 }
 
-bool topdown(int nums[], int n, int targetSum)
-{
-    if (targetSum == 0)
-    {
-        return true;
-    }
-    if (n == 0 || targetSum < 0)
-    {
-        return false;
-    }
+int main(){
+    int n = 5, k = 4;
+    int a[] = {1,1,2,1,3};
+    cout<<topdown(a, n, k);
 
-    if (nums[n - 1] > targetSum)
-    {
-        return memo[n] = topdown(nums, n - 1, targetSum);
-    }
-    else
-    {
-        return memo[n] = topdown(nums, n - 1, targetSum - nums[n - 1]) || topdown(nums, n - 1, targetSum);
-    }
-}
-
-int main()
-{
-    int nums[] = {1,1,2,1,3};
-    int targetSum = 100;
-    int n = sizeof(nums) / sizeof(nums[0]);
-
-    bottomup(nums, n, targetSum);
-    // cout << topdown(nums, n, targetSum);
 }
