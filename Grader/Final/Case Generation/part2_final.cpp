@@ -4,13 +4,14 @@ int memo[1000][1000] = {0}, a[1000][1000]={0}, m,n;
 
 int topdown(int m, int n){
     if(m < 0 || n < 0){
-        return 0;
+        return -1;
     }
     else if(memo[m][n] != 0){
         return memo[m][n];
     }
     else{
-        cout<<a[m][n]<<" ";
+        int a1 = topdown(m-1,n);
+        int a2 = topdown
         return memo[m][n] = a[m][n] + min(topdown(m-1,n), topdown(m, n-1)) ;
     }
 }
