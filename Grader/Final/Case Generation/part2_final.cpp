@@ -1,31 +1,38 @@
 #include<iostream>
 using namespace std;
-int memo[1000][1000], a[1000][2], n;
+long long int memo[1000][2];
 
-int topdown(int i, int j){
-    if(i == 0 || j == 0){
-        return 0;
+int g(int n){
+    if(n == 0){
+        return 1;
     }
-    else if(memo[i][j] != 0){
-        return memo[i][j];
+    else if(n == 1){
+        return 2;
+    }
+    else if(memo[n][1] != 0){
+        return memo[n][1];
     }
     else{
-        if(j < a[i][1]){
-            memo[i][j] = topdown(i-1,j);
-            return memo[i][j];
-        }
-        else{
-            memo[i][j] = max(a[i][0] + topdown(i-1,j-a[i][1]), topdown(i-1, j));
-            return memo[i][j];
-        }
+        memo[n][1] = g(n-1) + g(n-2);
+        return memo[n][1];
     }
+}
 
+int t(int n){
+    if(n == 0){
+        return 1;
+    }
+    else if(memo[n][0] != 0){
+        return memo[n][0];
+    }
+    else{
+        memo[n][0] = t(n-1) + g(n/2) + n;
+        return memo[n][0];
+    }
 }
 
 int main(){
-    for(int i = 0; i<8; i++){
-        cin>>a[i][0];
-        cin>>a[i][1];
-    }
-    cout<<topdown(7, 15);
+    long long int result = t(172);
+    cout << "Result: " << t(172) << endl;
+    return 0;
 }
